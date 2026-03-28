@@ -180,5 +180,37 @@
     "auth_signin_link": "इसके बजाय साइन इन करें",
     "auth_pwd_mismatch": "पासवर्ड मेल नहीं खाते!",
     "auth_logging_in": "लॉग इन कर रहे हैं",
-    "auth_signing_up": "साइन अप कर रहे हैं"
+    "auth_signing_up": "साइन अप कर रहे हैं",
+
+    "contact_section_badge": "कानूनी सहायता नेटवर्क",
+    "contact_section_title": "NGO और कानूनी सहायता संपर्क",
+    "contact_section_desc": "पूरे भारत में महिलाओं के अधिकारों के संगठनों और कानूनी पेशेवरों से सीधे जुड़ें।",
+    "contact_tab_ngo": "NGOs",
+    "contact_tab_lawyers": "वकील",
+    "contact_call_btn": "कॉल करें",
+    "contact_chat_title": "वकील से चैट करें",
+    "contact_chat_desc": "हमारे AI कानूनी सलाहकार से तुरंत कानूनी मार्गदर्शन पाएं, जो भारतीय महिलाओं के अधिकारों पर आधारित है।",
+    "contact_chat_btn": "निःशुल्क परामर्श शुरू करें →",
+    "contact_chat_secure": "गोपनीय और सुरक्षित",
+    "contact_file_title": "शिकायत दर्ज करें",
+    "contact_file_desc": "अपना मामला सुरक्षित रूप से दर्ज करें",
+    "contact_helpline_women": "महिला हेल्पलाइन",
+    "contact_helpline_police": "पुलिस आपातकाल",
+    "contact_helpline_ncw": "NCW हेल्पलाइन",
+    "contact_helpline_legal": "कानूनी सहायता",
+    "ngo_list": [
+        { "name": "iCall – TISS", "type": "मानसिक स्वास्थ्य और कानूनी सहायता", "city": "पूरे भारत" },
+        { "name": "Majlis Law", "type": "महिलाओं के कानूनी अधिकार", "city": "मुंबई" },
+        { "name": "Sakhi – Women's Aid", "type": "घरेलू हिंसा सहायता", "city": "दिल्ली" },
+        { "name": "Snehi Foundation", "type": "संकट परामर्श", "city": "चेन्नई" },
+        { "name": "Vimochana", "type": "महिला अधिकार समर्थन", "city": "बेंगलुरु" }
+    ],
+    "lawyer_list": [
+        { "name": "एडव. फ्लेविया एगनेस", "spec": "पारिवारिक और घरेलू हिंसा कानून", "city": "मुंबई" },
+        { "name": "एडव. कामिनी जायसवाल", "spec": "सुप्रीम कोर्ट – महिला अधिकार", "city": "दिल्ली" },
+        { "name": "एडव. इंदिरा जयसिंह", "spec": "संवैधानिक और मानवाधिकार", "city": "दिल्ली" },
+        { "name": "एडव. मीनाक्षी अरोड़ा", "spec": "आपराधिक और POCSO कानून", "city": "दिल्ली" },
+        { "name": "कानूनी सहायता हेल्पलाइन", "spec": "मुफ्त कानूनी सहायता – NALSA", "city": "पूरे भारत" },
+        { "name": "बार काउंसिल रेफरल", "spec": "वकील रेफरल सेवा", "city": "पूरे भारत" }
+    ]
 }

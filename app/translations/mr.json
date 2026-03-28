@@ -180,5 +180,37 @@
     "auth_signin_link": "त्याऐवजी साइन इन करा",
     "auth_pwd_mismatch": "पासवर्ड जुळत नाहीत!",
     "auth_logging_in": "लॉग इन करत आहे",
-    "auth_signing_up": "साइन अप करत आहे"
+    "auth_signing_up": "साइन अप करत आहे",
+
+    "contact_section_badge": "कायदेशीर सहाय्य नेटवर्क",
+    "contact_section_title": "NGO आणि कायदेशीर सहाय्य संपर्क",
+    "contact_section_desc": "संपूर्ण भारतात महिलांच्या हक्कांच्या संघटना आणि कायदेशीर व्यावसायिकांशी थेट संपर्क साधा.",
+    "contact_tab_ngo": "NGOs",
+    "contact_tab_lawyers": "वकिल",
+    "contact_call_btn": "कॉल करा",
+    "contact_chat_title": "वकिलांशी चॅट करा",
+    "contact_chat_desc": "आमच्या AI कायदेशीर सलाहगाराकडून तात्काळ कायदेशीर मार्गदर्शन मिळवा, जो भारतीय महिलांच्या हक्कांवर आधारित आहे.",
+    "contact_chat_btn": "मोफत सल्ला सुरू करा →",
+    "contact_chat_secure": "गोपनीय आणि सुरक्षित",
+    "contact_file_title": "तक्रार नोंदवा",
+    "contact_file_desc": "तुमची केस सुरक्षितपणे नोंदवा",
+    "contact_helpline_women": "महिला हेल्पलाइन",
+    "contact_helpline_police": "पोलीस आपत्काल",
+    "contact_helpline_ncw": "NCW हेल्पलाइन",
+    "contact_helpline_legal": "कायदेशीर सहाय्य",
+    "ngo_list": [
+        { "name": "iCall – TISS", "type": "मानसिक आरोग्य आणि कायदेशीर सहाय्य", "city": "संपूर्ण भारत" },
+        { "name": "Majlis Law", "type": "महिलांचे कायदेशीर हक्क", "city": "मुंबई" },
+        { "name": "Sakhi – Women's Aid", "type": "घरगुती हिंसा सहाय्य", "city": "दिल्ली" },
+        { "name": "Snehi Foundation", "type": "संकट सल्ला", "city": "चेन्नई" },
+        { "name": "Vimochana", "type": "महिला हक्क समर्थन", "city": "बेंगळूरु" }
+    ],
+    "lawyer_list": [
+        { "name": "अडव. फ्लेविया एग्नेस", "spec": "कौटुंबिक आणि घरगुती हिंसा कायदा", "city": "मुंबई" },
+        { "name": "अडव. कामिनी जायसवाल", "spec": "सर्वोच्च न्यायालय – महिला हक्क", "city": "दिल्ली" },
+        { "name": "अडव. इंदिरा जयसिंह", "spec": "संवैधानिक आणि मानवाधिकार", "city": "दिल्ली" },
+        { "name": "अडव. मीनाक्षी अरोरा", "spec": "फौजदारी आणि POCSO कायदा", "city": "दिल्ली" },
+        { "name": "कायदेशीर सहाय्य हेल्पलाइन", "spec": "मोफत कायदेशीर सहाय्य – NALSA", "city": "संपूर्ण भारत" },
+        { "name": "बार काउन्सिल रेफरल", "spec": "वकिल रेफरल सेवा", "city": "संपूर्ण भारत" }
+    ]
 }

@@ -180,5 +180,37 @@
     "auth_signin_link": "Sign in instead",
     "auth_pwd_mismatch": "Passwords do not match!",
     "auth_logging_in": "Logging in as",
-    "auth_signing_up": "Signing up"
+    "auth_signing_up": "Signing up",
+
+    "contact_section_badge": "Legal Support Network",
+    "contact_section_title": "NGOs & Legal Help Contacts",
+    "contact_section_desc": "Connect directly with verified legal professionals and women's rights organizations across India.",
+    "contact_tab_ngo": "NGOs",
+    "contact_tab_lawyers": "Lawyers",
+    "contact_call_btn": "Call",
+    "contact_chat_title": "Chat with a Lawyer",
+    "contact_chat_desc": "Get instant legal guidance from our AI Legal Advisor, trained on Indian women's rights and safety laws.",
+    "contact_chat_btn": "Start Free Consultation →",
+    "contact_chat_secure": "Confidential & Secure",
+    "contact_file_title": "File a Complaint",
+    "contact_file_desc": "Document your case securely",
+    "contact_helpline_women": "Women Helpline",
+    "contact_helpline_police": "Police Emergency",
+    "contact_helpline_ncw": "NCW Helpline",
+    "contact_helpline_legal": "Legal Aid",
+    "ngo_list": [
+        { "name": "iCall – TISS", "type": "Mental Health & Legal Support", "city": "Pan India" },
+        { "name": "Majlis Law", "type": "Women's Legal Rights", "city": "Mumbai" },
+        { "name": "Sakhi – Women's Aid", "type": "Domestic Violence Support", "city": "Delhi" },
+        { "name": "Snehi Foundation", "type": "Crisis Counselling", "city": "Chennai" },
+        { "name": "Vimochana", "type": "Women's Rights Advocacy", "city": "Bengaluru" }
+    ],
+    "lawyer_list": [
+        { "name": "Adv. Flavia Agnes", "spec": "Family & Domestic Violence Law", "city": "Mumbai" },
+        { "name": "Adv. Kamini Jaiswal", "spec": "Supreme Court – Women's Rights", "city": "Delhi" },
+        { "name": "Adv. Indira Jaising", "spec": "Constitutional & Human Rights", "city": "Delhi" },
+        { "name": "Adv. Meenakshi Arora", "spec": "Criminal & POCSO Law", "city": "Delhi" },
+        { "name": "Legal Aid Helpline", "spec": "Free Legal Aid – NALSA", "city": "Pan India" },
+        { "name": "Bar Council Referral", "spec": "Lawyer Referral Service", "city": "Pan India" }
+    ]
 }
