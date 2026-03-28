@@ -1,10 +1,19 @@
 "use client";
 import { useState, useEffect } from "react";
+import T from "i18n-react";
+import "../i18n";
 
 export default function EmergencyPage() {
+  const [langTrigger, setLangTrigger] = useState(0);
   const [location, setLocation] = useState(null);
   const [locationError, setLocationError] = useState("");
   const [isSOSActive, setIsSOSActive] = useState(false);
+
+  useEffect(() => {
+    const handleLangChange = () => setLangTrigger(prev => prev + 1);
+    window.addEventListener("languageChanged", handleLangChange);
+    return () => window.removeEventListener("languageChanged", handleLangChange);
+  }, []);
 
   const handleSOS = () => {
     setIsSOSActive(true);
@@ -50,8 +59,8 @@ export default function EmergencyPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-extrabold text-red-600 mb-4 animate-pulse">Emergency Assistance</h1>
-        <p className="text-lg text-gray-600">Get immediate help, share your location, or contact authorities instantly.</p>
+        <h1 className="text-4xl font-extrabold text-red-600 mb-4 animate-pulse">{T.translate("emerg_title")}</h1>
+        <p className="text-lg text-gray-600">{T.translate("emerg_desc")}</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -73,30 +82,30 @@ export default function EmergencyPage() {
                 <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                 </svg>
-                {isSOSActive ? "SENDING..." : "SOS"}
+                {isSOSActive ? T.translate("emerg_sending") : T.translate("emerg_sos")}
               </div>
             </button>
             <p className="mt-8 text-red-700 font-medium max-w-sm">
-              Pressing this button will instantly alert your emergency contacts and local authorities.
+              {T.translate("emerg_sos_desc")}
             </p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+          <div className="bg-white/95 p-6 rounded-2xl shadow-sm border border-gray-100">
             <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
               <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-              Your Location
+              {T.translate("emerg_loc_title")}
             </h3>
             
             {locationError && <div className="text-red-500 bg-red-50 p-3 rounded-lg border border-red-100 mb-4">{locationError}</div>}
             
             {location ? (
               <div className="bg-gray-50 p-4 rounded-xl mb-4 border border-gray-200">
-                <p className="text-gray-700 font-mono text-sm sm:text-base"><strong>Latitude :</strong> {location.lat.toFixed(6)}</p>
-                <p className="text-gray-700 font-mono text-sm sm:text-base"><strong>Longitude:</strong> {location.lng.toFixed(6)}</p>
+                <p className="text-gray-700 font-mono text-sm sm:text-base"><strong>{T.translate("emerg_lat")}</strong> {location.lat.toFixed(6)}</p>
+                <p className="text-gray-700 font-mono text-sm sm:text-base"><strong>{T.translate("emerg_lng")}</strong> {location.lng.toFixed(6)}</p>
               </div>
             ) : (
               <div className="bg-gray-50 p-4 rounded-xl mb-4 text-gray-500 animate-pulse border border-gray-200">
-                Detecting your location...
+                {T.translate("emerg_loc_detect")}
               </div>
             )}
             
@@ -105,17 +114,17 @@ export default function EmergencyPage() {
               className="w-full bg-purple-100 text-purple-700 hover:bg-purple-200 font-semibold py-3 rounded-xl transition-colors flex justify-center items-center gap-2"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-              Refresh Location
+              {T.translate("emerg_refresh")}
             </button>
           </div>
         </div>
 
         {/* Right Column: Maps and Contacts */}
         <div className="space-y-8 flex flex-col">
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-64 lg:h-80">
+          <div className="bg-white/95 p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-64 lg:h-80">
             <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
               <svg className="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
-              Map View
+              {T.translate("emerg_map")}
             </h3>
             <div className="flex-1 bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden border border-gray-200">
               {location ? (
@@ -130,7 +139,7 @@ export default function EmergencyPage() {
                   className="rounded-xl w-full h-full"
                 ></iframe>
               ) : (
-                <p className="text-gray-500">Map unavailable without location data.</p>
+                <p className="text-gray-500">{T.translate("emerg_map_err")}</p>
               )}
             </div>
           </div>
@@ -138,7 +147,7 @@ export default function EmergencyPage() {
           <div className="bg-gray-900 text-white p-6 rounded-2xl shadow-sm flex-1">
             <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
               <svg className="w-6 h-6 text-red-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-              Important Helplines
+              {T.translate("emerg_helplines")}
             </h3>
             <ul className="space-y-4">
               {emergencyContacts.map((contact, idx) => (
