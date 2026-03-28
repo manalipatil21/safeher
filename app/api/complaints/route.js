@@ -1,11 +1,16 @@
 import { NextResponse } from "next/server";
-import { adminDb, adminAuth } from "@/lib/firebase-admin";
+import { getAdminDb, getAdminAuth } from "@/lib/firebase-admin";
+
+export const dynamic = "force-dynamic";
 
 // GET /api/complaints — fetch all complaints for logged-in user
 export async function GET(request) {
   try {
     const token = request.headers.get("Authorization")?.split("Bearer ")[1];
     if (!token) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+    const adminAuth = getAdminAuth();
+    const adminDb = getAdminDb();
 
     const decoded = await adminAuth.verifyIdToken(token);
     const snapshot = await adminDb
@@ -29,6 +34,9 @@ export async function GET(request) {
 // POST /api/complaints — save a new complaint
 export async function POST(request) {
   try {
+    const adminAuth = getAdminAuth();
+    const adminDb = getAdminDb();
+
     const token = request.headers.get("Authorization")?.split("Bearer ")[1];
     let userId = "anonymous";
     let userEmail = "anonymous";

@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
-import { db } from "@/lib/firebase";
-import { collection, query, where, orderBy, getDocs } from "firebase/firestore";
+import { getIdToken } from "firebase/auth";
+
 
 const STATUS_STYLES = {
   pending: "bg-amber-100 text-amber-700 border border-amber-200",
@@ -30,21 +30,25 @@ export default function MyComplaintsPage() {
 
     const fetchComplaints = async () => {
       try {
-        const q = query(
-          collection(db, "complaints"),
-          where("userId", "==", currentUser.uid),
-          orderBy("createdAt", "desc")
-        );
-        const snapshot = await getDocs(q);
-        const data = snapshot.docs.map(doc => ({
-          id: doc.id,
-          shortId: doc.id.slice(0, 8).toUpperCase(),
-          ...doc.data(),
-          createdAt: doc.data().createdAt?.toDate?.()?.toLocaleDateString("en-IN", {
-            day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit"
-          }) || "Just now",
+        // Use Admin SDK API route — bypasses Firestore security rules entirely
+        const token = await getIdToken(currentUser);
+        const res = await fetch("/api/complaints", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        const formatted = (data.complaints || []).map(c => ({
+          ...c,
+          shortId: (c.id || "").slice(0, 8).toUpperCase(),
+          createdAt: c.createdAt
+            ? new Date(c.createdAt).toLocaleDateString("en-IN", {
+                day: "numeric", month: "short", year: "numeric",
+                hour: "2-digit", minute: "2-digit",
+              })
+            : "Just now",
         }));
-        setComplaints(data);
+        setComplaints(formatted);
       } catch (err) {
         console.error("Error fetching complaints:", err);
       } finally {
@@ -54,6 +58,7 @@ export default function MyComplaintsPage() {
 
     fetchComplaints();
   }, [currentUser]);
+
 
   if (loading || fetching) {
     return (

@@ -1,11 +1,16 @@
 import { NextResponse } from "next/server";
-import { adminDb, adminAuth } from "@/lib/firebase-admin";
+import { getAdminDb, getAdminAuth } from "@/lib/firebase-admin";
+
+export const dynamic = "force-dynamic";
 
 // GET /api/users/me — fetch current user profile
 export async function GET(request) {
   try {
     const token = request.headers.get("Authorization")?.split("Bearer ")[1];
     if (!token) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+    const adminAuth = getAdminAuth();
+    const adminDb = getAdminDb();
 
     const decoded = await adminAuth.verifyIdToken(token);
     const doc = await adminDb.collection("users").doc(decoded.uid).get();
@@ -24,10 +29,12 @@ export async function POST(request) {
     const token = request.headers.get("Authorization")?.split("Bearer ")[1];
     if (!token) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
+    const adminAuth = getAdminAuth();
+    const adminDb = getAdminDb();
+
     const decoded = await adminAuth.verifyIdToken(token);
     const body = await request.json();
 
-    // Only allow updating safe fields
     const allowedFields = ["name", "phone", "city", "language"];
     const updates = {};
     for (const key of allowedFields) {

@@ -4,8 +4,7 @@ import Link from "next/link";
 import T from "i18n-react";
 import "../i18n";
 import { useAuth } from "@/lib/auth-context";
-import { db } from "@/lib/firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+
 
 export default function ComplaintPage() {
   const { currentUser } = useAuth();
@@ -37,30 +36,43 @@ export default function ComplaintPage() {
     setIsSubmitting(true);
 
     try {
-      const docRef = await addDoc(collection(db, "complaints"), {
-        userId: currentUser?.uid || "anonymous",
-        userEmail: currentUser?.email || "anonymous",
-        type: formData.type,
-        date: formData.date,
-        location: formData.location,
-        description: formData.description,
-        witnessName: formData.witnessName || null,
-        witnessContact: formData.witnessContact || null,
-        status: "pending",
-        createdAt: serverTimestamp(),
+      // Get auth token for the API (bypasses Firestore rules via Admin SDK)
+      let token = null;
+      if (currentUser) {
+        const { getIdToken } = await import("firebase/auth");
+        token = await getIdToken(currentUser);
+      }
+
+      const res = await fetch("/api/complaints", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify({
+          type: formData.type,
+          date: formData.date,
+          location: formData.location,
+          description: formData.description,
+          witnessName: formData.witnessName || null,
+          witnessContact: formData.witnessContact || null,
+        }),
       });
 
-      setComplaintId(docRef.id.slice(0, 8).toUpperCase());
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to submit");
+
+      setComplaintId((data.id || "000000").slice(0, 8).toUpperCase());
       setSuccess(true);
     } catch (err) {
       console.error("Error saving complaint:", err);
-      // Fallback ID so user still gets confirmation
       setComplaintId("ERR-" + Math.random().toString(36).slice(2, 6).toUpperCase());
       setSuccess(true);
     } finally {
       setIsSubmitting(false);
     }
   };
+
 
   const resetForm = () => {
     setSuccess(false);
