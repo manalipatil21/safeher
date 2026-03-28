@@ -74,7 +74,7 @@ export default function ChatbotPage() {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
     recognitionRef.current = recognition;
-    
+
     const langMap = {
       en: "en-US",
       hi: "hi-IN",
@@ -122,7 +122,7 @@ export default function ChatbotPage() {
       });
 
       const data = await res.json();
-      
+
       if (!res.ok) {
         setMessages(prev => [...prev, {
           role: "system",
@@ -256,11 +256,10 @@ export default function ChatbotPage() {
           <button
             type="button"
             onClick={handleMicClick}
-            className={`absolute right-14 top-1/2 -translate-y-1/2 p-3 text-white rounded-full transition-all shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-              isRecording 
-                ? "bg-red-500 hover:bg-red-600 focus:ring-red-500 animate-pulse bg-opacity-90" 
-                : "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500"
-            }`}
+            className={`absolute right-14 top-1/2 -translate-y-1/2 p-3 text-white rounded-full transition-all shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 ${isRecording
+              ? "bg-red-500 hover:bg-red-600 focus:ring-red-500 animate-pulse bg-opacity-90"
+              : "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500"
+              }`}
             title="Speak"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
