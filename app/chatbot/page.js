@@ -5,24 +5,7 @@ import T from "i18n-react";
 import "../i18n";
 import { ReactTransliterate } from "react-transliterate";
 import "react-transliterate/dist/index.css";
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyB6rUJOWbl9ztuAi5SFDtUks2KCLC3Q0OM",
-  authDomain: "women-safety-bb7f7.firebaseapp.com",
-  projectId: "women-safety-bb7f7",
-  storageBucket: "women-safety-bb7f7.firebasestorage.app",
-  messagingSenderId: "13678360890",
-  appId: "1:13678360890:web:2b85b13dd819c45cbf3803",
-  measurementId: "G-DCLYCYCBGD"
-};
-
-const app = initializeApp(firebaseConfig);
-let analytics;
-if (typeof window !== "undefined") {
-  analytics = getAnalytics(app);
-}
 
 export default function ChatbotPage() {
   const [langTrigger, setLangTrigger] = useState(0);
